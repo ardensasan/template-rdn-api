@@ -1,7 +1,7 @@
 {
   "name": "template-rdn-api",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/server.ts",
   "license": "MIT",
   "devDependencies": {
     "@types/mysql": "^2.15.19",

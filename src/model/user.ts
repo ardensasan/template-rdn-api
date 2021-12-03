@@ -6,12 +6,6 @@ export const getUsers = async () => {
 };
 
 export const addUser = () => {
-  connection.query(
-    `insert into users (user_name,password,email) values ("${"rdn"}","${"rdn"}","${"rdn"}")`,
-    function (err: any, result: any) {
-      if (err) throw err;
-    }
-  );
 };
 
 export const deleteUser = () => {

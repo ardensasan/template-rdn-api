@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from "express";
-import user from "./api/user";
-import generator from "./api/generator";
+import user from "./rotues/user";
+import generator from "./rotues/generator";
 const app: Application = express();
 app.set("port", process.env.PORT || 3000);
 app.get("/", (_req: Request, res: Response) => {

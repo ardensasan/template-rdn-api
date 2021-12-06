@@ -11,7 +11,7 @@ router.post('/api/user',async (req:Request,res:Response)=>{
 })
 
 router.put('/api/user',async (req:Request,res:Response)=>{
-    return res.send(updateUser(req.body.query,req.body.data));
+    return res.send(updateUser(req.body.query,req.body.data,req.body.type));
 })
 
 export default router

@@ -6,6 +6,7 @@ app.set("port", process.env.PORT || 3000);
 app.get("/", (_req: Request, res: Response) => {
   res.json({ message: "Hello world!" });
 });
+app.use(express.json())
 app.use(user);
 app.use(generator)
 app.listen(app.get("port"), () => {

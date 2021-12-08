@@ -1,16 +1,20 @@
 import express, { Application, Request, Response } from "express";
 import user from "./rotues/user";
-import cors from 'cors'
+import cors from "cors";
 import generator from "./rotues/generator";
 const app: Application = express();
 app.set("port", process.env.PORT || 3000);
 app.get("/", (_req: Request, res: Response) => {
   res.json({ message: "Hello world!" });
 });
-app.use(cors())
-app.use(express.json())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(express.json());
 app.use(user);
-app.use(generator)
+app.use(generator);
 app.listen(app.get("port"), () => {
   console.log(`Server on http://localhost:${app.get("port")}/`);
 });

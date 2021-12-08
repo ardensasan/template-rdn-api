@@ -5,7 +5,7 @@ import generator from "./rotues/generator";
 const app: Application = express();
 app.set("port", process.env.PORT || 3000);
 app.get("/", (_req: Request, res: Response) => {
-  res.json({ message: "Hello world!" });
+  res.json({ message: "Working!" });
 });
 app.use(
   cors({

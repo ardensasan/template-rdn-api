@@ -1,4 +1,5 @@
 import { rejects } from "assert";
+import { ObjectId } from "mongodb";
 import { dbConnect, resultArray } from "./mongodb";
 
 export const getItems = async (collection: string, filter: any) => {
@@ -14,6 +15,21 @@ export const getItems = async (collection: string, filter: any) => {
         }
         return resolve(result);
       });
+  });
+  return { type: response, result: result };
+};
+
+export const getItem = async (collection: string, filter: any) => {
+  const db = await dbConnect();
+  let response = "SUCCESS";
+  const result = await new Promise((resolve, reject) => {
+    db.collection(collection).findOne(filter, (err: any, result: any) => {
+      if (err) {
+        response = "ERROR";
+        reject();
+      }
+      return resolve(result);
+    });
   });
   return { type: response, result: result };
 };
@@ -36,25 +52,17 @@ export const insertItem = async (collection: string, requestData: any) => {
   return { type: response };
 };
 
-export const updateItem = async (collection: string, query: any, data: any) => {
+export const updateItem = async (collection: string, data: any) => {
   const db = await dbConnect();
-  if (Object.keys(query).length === 0) {
-    db.collection(collection).updateMany(
-      query,
-      { $set: data },
-      (err: any, res: any) => {
-        if (err) throw err;
-        return { count: res.modifiedCount };
-      }
-    );
-  } else {
-    db.collection(collection).updateOne(
-      query,
-      { $set: data },
-      (err: any, res: any) => {
-        if (err) throw err;
-        return { count: res.modifiedCount };
-      }
-    );
-  }
+  const { _id, ...rest } = data.data;
+  let response = "SUCCESS";
+  db.collection(collection).updateOne(
+    { _id: new ObjectId(_id) },
+    { $set: rest },
+    (err: any, res: any) => {
+      if (err) return (response = "ERROR");
+      return;
+    }
+  );
+  return response;
 };

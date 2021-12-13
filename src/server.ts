@@ -3,7 +3,7 @@ import user from "./rotues/user";
 import cors from "cors";
 import generator from "./rotues/generator";
 const app: Application = express();
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3001);
 app.get("/", (_req: Request, res: Response) => {
   res.json({ message: "Hello World!" });
 });

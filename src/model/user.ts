@@ -1,7 +1,7 @@
 import { getItems, insertItem, updateItem } from "../utils/query";
 
 export const getUsers = async () => {
-  return getItems("users",{})
+  return await getItems("users",{})
 };
 
 export const addUser = async (data: any) => {

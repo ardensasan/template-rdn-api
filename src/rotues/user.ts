@@ -22,7 +22,7 @@ router.put('/api/user',async (req:Request,res:Response)=>{
 })
 
 router.delete('/api/user/:id',async (req:Request,res:Response)=>{
-    const result = await deleteUser(req.params.id)
+    const result = await deleteUser(req.params.id)    
     return res.send(result)
 })
 export default router

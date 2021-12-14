@@ -55,26 +55,31 @@ export const insertItem = async (collection: string, requestData: any) => {
 export const updateItem = async (collection: string, data: any) => {
   const db = await dbConnect();
   const { _id, ...rest } = data.data;
-  let response = "SUCCESS";
-  db.collection(collection).updateOne(
-    { _id: new ObjectId(_id) },
-    { $set: rest },
-    (err: any, res: any) => {
-      if (err) return (response = "ERROR");
-      return;
-    }
-  );
+  const response = new Promise((resolve,reject) => {
+    db.collection(collection).updateOne(
+      { _id: new ObjectId(_id) },
+      { $set: rest },
+      (err: any, res: any) => {
+        if (err) reject("ERROR")
+        resolve("SUCCESS")
+      }
+    );
+  })
   return response;
 };
 
-export const deleteItem = async (collection:string,id:any) =>{
+export const deleteItem = async (collection: string, id: any) => {
   const db = await dbConnect();
-  let response = "SUCCESS";
-  db.collection(collection).deleteOne({_id: new ObjectId(id)},
-    (err: any, res: any) => {
-      if (err) return (response = "ERROR");
-      return;
-    }
-  );
-  return response;
+  const response = new Promise((resolve, reject) => {
+    db.collection(collection).deleteOne(
+      { _id: new ObjectId(id) },
+      (err: any, res: any) => {
+        if (err) {
+          reject("ERROR");
+        }
+        resolve("SUCCESS");
+      }
+    );
+  });
+  return response
 };

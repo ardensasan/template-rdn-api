@@ -20,12 +20,3 @@ export const dbConnect = () => {
   });
   return promise;
 };
-
-export const resultArray = (collection: any) => {
-  return new Promise((resolve, reject) => {
-    collection.toArray((err: any, result: any) => {
-      if (err) return reject(err);
-      return resolve(result);
-    });
-  });
-};

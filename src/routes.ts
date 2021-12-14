@@ -2,14 +2,14 @@ import express, { Request, Response } from "express";
 import {
   insertController,
   deleteController,
-  getListController,
+  getItemsController,
   updateController,
   getItemController,
 } from "./controller";
 const router = express.Router();
 
 router.get("/api/:endpoint/", async (req: Request, res: Response) => {
-  const result = await getListController(req.params.endpoint);
+  const result = await getItemsController(req.params.endpoint);
   return res.send(result);
 });
 

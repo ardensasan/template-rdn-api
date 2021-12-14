@@ -1,7 +1,7 @@
-import { insertItem, getList, updateItem, getItem, deleteItem } from "./model";
+import { insertItem, getItems, updateItem, getItem, deleteItem } from "./model";
 
-export const getListController = (endpoint: string) => {
-  return getList(endpoint);
+export const getItemsController = (endpoint: string) => {
+  return getItems(endpoint);
 };
 
 export const getItemController = (endpoint: string, id: string) => {

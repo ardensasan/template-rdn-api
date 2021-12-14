@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import { dbConnect } from "./mongodb";
-export const getList = async (endpoint: string) => {
+export const getItems = async (endpoint: string) => {
   const db = await dbConnect();
   let response = "SUCCESS";
   const result = await new Promise((resolve, reject) => {

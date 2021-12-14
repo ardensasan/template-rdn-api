@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getItem, getItems, insertItem, updateItem } from "../utils/query";
+import { deleteItem, getItem, getItems, insertItem, updateItem } from "../utils/query";
 
 export const getUsers = async () => {
   return await getItems("users",{})
@@ -16,3 +16,7 @@ export const addUser = async (data: any) => {
 export const updateUser = async (data: any) => {
   return updateItem("users",data)
 };
+
+export const deleteUser = async (data:any) => {
+  return deleteItem("users",data)
+}

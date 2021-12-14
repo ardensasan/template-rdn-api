@@ -66,3 +66,15 @@ export const updateItem = async (collection: string, data: any) => {
   );
   return response;
 };
+
+export const deleteItem = async (collection:string,id:any) =>{
+  const db = await dbConnect();
+  let response = "SUCCESS";
+  db.collection(collection).deleteOne({_id: new ObjectId(id)},
+    (err: any, res: any) => {
+      if (err) return (response = "ERROR");
+      return;
+    }
+  );
+  return response;
+};

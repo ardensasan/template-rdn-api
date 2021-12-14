@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { addUser, getUserDetails, getUsers, updateUser } from '../model/user';
+import { addUser, deleteUser, getUserDetails, getUsers, updateUser } from '../model/user';
 const router = express.Router();
 
 router.get('/api/user/:id',async (req:Request,res:Response)=>{
@@ -19,7 +19,10 @@ router.post('/api/user',async (req:Request,res:Response)=>{
 router.put('/api/user',async (req:Request,res:Response)=>{
     const result = await updateUser(req.body)
     return res.send(result)
-
 })
 
+router.delete('/api/user/:id',async (req:Request,res:Response)=>{
+    const result = await deleteUser(req.params.id)
+    return res.send(result)
+})
 export default router

@@ -1,5 +1,19 @@
 import { ObjectId } from "mongodb";
 import { dbConnect } from "./mongodb";
+
+export const createEndpoint = async (endpoint: string) => {
+  const db = await dbConnect();
+  const result = await new Promise((resolve, reject) => {
+    db.createCollection(endpoint, (err: any, result: any) => {
+      if (err) {
+        reject("ERROR");
+      }
+      return resolve("SUCCESS");
+    });
+  });
+  return result;
+};
+
 export const getItems = async (endpoint: string) => {
   const db = await dbConnect();
   let response = "SUCCESS";

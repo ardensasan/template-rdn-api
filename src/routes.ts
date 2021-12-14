@@ -5,8 +5,14 @@ import {
   getItemsController,
   updateController,
   getItemController,
+  createEndpointController,
 } from "./controller";
 const router = express.Router();
+
+router.post("/create/api/:endpoint", async (req: Request, res: Response) => {
+  const result = await createEndpointController(req.params.endpoint);
+  return res.send(result);
+});
 
 router.get("/api/:endpoint/", async (req: Request, res: Response) => {
   const result = await getItemsController(req.params.endpoint);

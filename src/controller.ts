@@ -1,4 +1,8 @@
-import { insertItem, getItems, updateItem, getItem, deleteItem } from "./model";
+import { insertItem, getItems, updateItem, getItem, deleteItem, createEndpoint } from "./model";
+
+export const createEndpointController = (endpoint:string) =>{
+  return createEndpoint(endpoint)
+}
 
 export const getItemsController = (endpoint: string) => {
   return getItems(endpoint);
